@@ -1,38 +1,57 @@
-# 2048
-A small clone of [1024](https://play.google.com/store/apps/details?id=com.veewo.a1024), based on [Saming's 2048](http://saming.fr/p/2048/) (also a clone). 2048 was indirectly inspired by [Threes](https://asherv.com/threes/).
+# 2048_i18n
 
-Made just for fun. [Play it here!](http://gabrielecirulli.github.io/2048/)
+This project is a **derivative work** based on the original
+[2048 by Gabriele Cirulli](https://github.com/gabrielecirulli/2048).
 
-The official app can also be found on the [Play Store](https://play.google.com/store/apps/details?id=com.gabrielecirulli.app2048) and [App Store!](https://itunes.apple.com/us/app/2048-by-gabriele-cirulli/id868076805)
+It preserves the original game logic while adding **internationalization (i18n)** and small UI improvements.
 
-### Contributions
+---
 
-[Anna Harren](https://github.com/iirelu/) and [sigod](https://github.com/sigod) are maintainers for this repository.
+## About this fork
 
-Other notable contributors:
+This fork adds the following features:
 
- - [TimPetricola](https://github.com/TimPetricola) added best score storage
- - [chrisprice](https://github.com/chrisprice) added custom code for swipe handling on mobile
- - [marcingajda](https://github.com/marcingajda) made swipes work on Windows Phone
- - [mgarciaisaia](https://github.com/mgarciaisaia) added support for Android 2.3
+- Internationalization (FR / EN / ES)
+- Language selector
+- Automatic browser language detection
+- Minor UI adjustments for clarity
 
-Many thanks to [rayhaanj](https://github.com/rayhaanj), [Mechazawa](https://github.com/Mechazawa), [grant](https://github.com/grant), [remram44](https://github.com/remram44) and [ghoullier](https://github.com/ghoullier) for the many other good contributions.
+The core gameplay, rules, and mechanics remain unchanged from the original project.
 
-### Screenshot
+This fork was created for learning purposes and to practice clean open-source workflows
+(forking, commits, remotes, and attribution).
 
-<p align="center">
-  <img src="https://cloud.githubusercontent.com/assets/1175750/8614312/280e5dc2-26f1-11e5-9f1f-5891c3ca8b26.png" alt="Screenshot"/>
-</p>
+---
 
-That screenshot is fake, by the way. I never reached 2048 :smile:
+## Original project
 
-## Contributing
-Changes and improvements are more than welcome! Feel free to fork and open a pull request. Please make your changes in a specific branch and request to pull into `master`! If you can, please make sure the game fully works before sending the PR, as that will help speed up the process.
+The original game **2048** was created by **Gabriele Cirulli**.
 
-You can find the same information in the [contributing guide.](https://github.com/gabrielecirulli/2048/blob/master/CONTRIBUTING.md)
+- Based on _1024_ by Veewo Studio
+- Conceptually inspired by _Threes_ by Asher Vollmer
+
+You can find the original repository here:
+https://github.com/gabrielecirulli/2048
+
+---
+
+## Credits
+
+- Original game: **Gabriele Cirulli**
+- Localization (FR / EN / ES) and UI adjustments: **Denis2ni**
+
+---
 
 ## License
-2048 is licensed under the [MIT license.](https://github.com/gabrielecirulli/2048/blob/master/LICENSE.txt)
 
-## Donations
-I made this in my spare time, and it's hosted on GitHub (which means I don't have any hosting costs), but if you enjoyed the game and feel like buying me coffee, you can donate at my BTC address: `1Ec6onfsQmoP9kkL3zkpB6c5sA4PVcXU2i`. Thank you very much!
+2048 is licensed under the **MIT License**.
+
+This fork is distributed under the same license.
+See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Notes
+
+This repository is **not an official version** of 2048.
+It is a modified and localized derivative intended for educational and experimental use.
