@@ -1,11 +1,32 @@
 function HTMLActuator() {
+  // Main DOM containers used to render the game
   this.tileContainer    = document.querySelector(".tile-container");
   this.scoreContainer   = document.querySelector(".score-container");
   this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
 
+  // UI elements that contain translatable text
+  this.restartButton = document.querySelector(".restart-button");
+  this.retryButton = document.querySelector(".retry-button");
+  this.keepPlayingButton = document.querySelector(".keep-playing-button");
+  this.gameIntro = document.querySelector(".game-intro");
+  this.gameExplanation = document.querySelector(".game-explanation");
+  this.noteLabel = document.querySelector(".note-label");
+  this.noteText = document.querySelector(".note-text");
+
+  // Current score state
   this.score = 0;
+
+  // Set the document language attribute for CSS-based i18n
+  document.documentElement.lang = currentLocale;
+
+  // Apply translations on initial load
+  this.applyTranslations();
+
+  // Bind language selector events if present
+  this.bindLanguageSelector();
 }
+
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
   var self = this;
@@ -125,9 +146,12 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 };
 
 HTMLActuator.prototype.message = function (won) {
+  // Determine message type based on game outcome
   var type    = won ? "game-won" : "game-over";
-  var message = won ? "You win!" : "Game over!";
-
+  // Get localized strings for the current language (fallback to French)
+  // Localized end-of-game message
+  var message = won ? t("youWin") : t("gameOver");
+  // Update message container state and content
   this.messageContainer.classList.add(type);
   this.messageContainer.getElementsByTagName("p")[0].textContent = message;
 };
@@ -137,3 +161,48 @@ HTMLActuator.prototype.clearMessage = function () {
   this.messageContainer.classList.remove("game-won");
   this.messageContainer.classList.remove("game-over");
 };
+
+HTMLActuator.prototype.applyTranslations = function () {
+  // Update static UI texts using i18n helper
+  if (this.gameIntro) this.gameIntro.innerHTML = t("intro");
+  if (this.restartButton) this.restartButton.textContent = t("newGame");
+  if (this.retryButton) this.retryButton.textContent = t("tryAgain");
+  if (this.keepPlayingButton) this.keepPlayingButton.textContent = t("keepGoing");
+
+  // Update "How to play" section (full paragraph replacement)
+  if (this.gameExplanation) {
+    this.gameExplanation.innerHTML =
+      '<strong class="important">' + t("howToPlayLabel") + '</strong> ' + t("howToPlayText");
+  }
+
+  // Optional: Note section (only if you implemented .note-label and .note-text in HTML)
+  if (this.noteLabel) this.noteLabel.textContent = t("noteLabel");
+  if (this.noteText) this.noteText.innerHTML = t("noteText");
+};
+
+HTMLActuator.prototype.bindLanguageSelector = function () {
+  // Get language selector element (if present)
+  var select = document.getElementById("lang-select");
+  if (!select) return;
+
+  // Initialize selector with the current language
+  select.value = currentLocale;
+
+  var self = this;
+  // Update language and UI on user selection
+  select.addEventListener("change", function (e) {
+    setLocale(e.target.value);
+    // Update document language attribute for CSS-based i18n
+    document.documentElement.lang = currentLocale;
+    // Re-apply translations to static UI elements
+    self.applyTranslations();
+
+    // Re-translate end-of-game message if currently visible
+    if (self.messageContainer.classList.contains("game-won")) {
+      self.messageContainer.getElementsByTagName("p")[0].textContent = t("youWin");
+    } else if (self.messageContainer.classList.contains("game-over")) {
+      self.messageContainer.getElementsByTagName("p")[0].textContent = t("gameOver");
+    }
+  });
+};
+

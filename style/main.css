@@ -756,3 +756,83 @@ hr {
     margin-top: 90px !important; }
   .game-message .lower {
     margin-top: 30px !important; } }
+
+  .above-game {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.above-game .game-intro {
+  margin: 0;
+}
+
+.above-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#lang-select {
+  height: 40px;
+  padding: 0 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.15);
+  background: #fff;
+}
+
+/* Responsive : en petit écran, on empile */
+@media (max-width: 520px) {
+  .above-game {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .above-controls {
+    justify-content: space-between;
+  }
+}
+/* === i18n labels for score / best === */
+
+
+/* On neutralise l'éventuel label secondaire */
+.score-container::before,
+.best-container::before {
+  content: "" !important;
+}
+
+
+/* On traduit le label principal (souvent ::after dans 2048) */
+html[lang="fr"] .score-container::after { content: "SCORE" !important; }
+html[lang="fr"] .best-container::after  { content: "MEILLEUR" !important; }
+
+html[lang="en"] .score-container::after { content: "SCORE" !important; }
+html[lang="en"] .best-container::after  { content: "BEST" !important; }
+
+html[lang="es"] .score-container::after { content: "PUNTOS" !important; }
+html[lang="es"] .best-container::after  { content: "MEJOR" !important; }
+
+/* Français */
+html[lang="fr"] .score-container::before {
+  content: "Score";
+}
+html[lang="fr"] .best-container::before {
+  content: "Meilleur";
+}
+
+/* Anglais */
+html[lang="en"] .score-container::before {
+  content: "Score";
+}
+html[lang="en"] .best-container::before {
+  content: "Best";
+}
+
+/* Espagnol */
+html[lang="es"] .score-container::before {
+  content: "Puntuación";
+}
+html[lang="es"] .best-container::before {
+  content: "Mejor";
+}
+
