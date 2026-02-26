@@ -15,7 +15,8 @@ const i18n = {
     gameOver: "Partie terminée !",
     youWin: "Vous avez gagné !",
     score: "Score",
-    best: "Meilleur"
+    best: "Meilleur",
+    back_to_games: "Retour aux jeux"
   },
 
   en: {
@@ -32,7 +33,8 @@ const i18n = {
     gameOver: "Game over!",
     youWin: "You win!",
     score: "Score",
-    best: "Best"
+    best: "Best",
+    back_to_games: "Back to games"
   },
 
   es: {
@@ -49,7 +51,8 @@ const i18n = {
     gameOver: "¡Fin de la partida!",
     youWin: "¡Has ganado!",
     score: "Puntuación",
-    best: "Mejor"
+    best: "Mejor",
+    back_to_games: "Volver a los juegos"
   }
 };
 
@@ -71,4 +74,28 @@ function t(key) {
   setLocale(candidate);
 })();
 
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Apply language on load
+  applyTranslations();
+
+  // Select language operation
+  const select = document.getElementById("lang-select");
+  if (select) {
+    select.value = currentLocale; // synchronising display
+    select.addEventListener("change", function (e) {
+      setLocale(e.target.value);
+      applyTranslations();
+    });
+  }
+
+});
+
+// back-link traduction
+function applyTranslations() {
+  const backLink = document.getElementById("back-link");
+  if (backLink) {
+    backLink.textContent = t("back_to_games");
+  }
+}
 
